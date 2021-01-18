@@ -11,6 +11,20 @@ function ageSelector() {
   }
 }
 
+function handlebars(name,surname,age) {
+  var source = $("#entry-template").html();
+  var template = Handlebars.compile(source);
+
+  var context = { 
+    name: name,
+    surname: surname,
+    eta: age 
+  };
+
+  var html = template(context);
+  return html;
+}
+
 function chiamata(url,age) {
 
   $.ajax(
@@ -18,19 +32,22 @@ function chiamata(url,age) {
         'url': url,
         'method': 'GET',
         'success': function(risposta){
-          
           $('.container').html('');
           for (let index = 0; index < risposta.length; index++) {
             const element = risposta[index];
-            console.log(age);
             if(age != null) {
-
+              
+              
               if(age == element.eta) {
-
-                $('.container').append("<div>" + element.nome + " - " + element.eta + "</div>")
+                var html = handlebars(element.nome,element.cognome,element.eta);
+                console.log(html);
+                $('.container').append(html)
               }
             } else {
-              $('.container').append("<div>" + element.nome + " - " + element.eta + "</div>")
+              
+                var html = handlebars(element.nome,element.cognome,element.eta);
+                $('.container').append(html)
+              
               }
             
           }
@@ -46,7 +63,6 @@ $(document).ready(function(){
     
     chiamata('server.php', age = null);
 
-    
 
     $( "#eta" ).keyup(function() {
       chiamata('server.php', ageSelector());
