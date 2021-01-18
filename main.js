@@ -35,10 +35,12 @@ function chiamata(url,age) {
           $('.container').html('');
           for (let index = 0; index < risposta.length; index++) {
             const element = risposta[index];
+            console.log(element);
             if(age != null) {
+              age = age.toLowerCase();
+          
               
-              
-              if(age == element.eta) {
+              if(element.eta.toLowerCase().includes(age) || element.nome.toLowerCase().includes(age) || element.cognome.toLowerCase().includes(age)) {
                 var html = handlebars(element.nome,element.cognome,element.eta);
                 console.log(html);
                 $('.container').append(html)
