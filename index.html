@@ -21,12 +21,12 @@
    <h1 class="text-center">Elenco Dipendenti:</h1>
    <input id="eta" type="text" placeholder="inserisci età">
    <button id="search">CERCA</button>
-   <div class="container d-flex flex-column align-items-center">
+   <div class="container d-flex flex-wrap">
    </div>
    
    <!-- inizio operazioni Handlebar -->
    <script id="entry-template" type="text/x-handlebars-template">
-     <div class="entry">
+     <div class="entry m-3 p-3">
         <h1>{{name}} {{surname}}</h1>
         <div class="body">
             <h3>nome: {{name}}</h3>
